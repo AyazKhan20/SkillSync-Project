@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - SkillSync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+            .fade-in-section.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            .feature-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 0 30px rgba(59, 130, 246, 0.25);
+            }
+
+        .hero-bg {
+            background-color: #0f172a; /* slate-900 */
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                Stop Guessing. <span class="text-blue-400">Start Growing.</span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-300">
+                Upload your resume and let our AI analyze your skills. We'll show you the exact skills you need to land your dream job.
+            </p>
+            <div class="mt-8">
+                <a asp-area="Identity" asp-page="/Account/Register" class="inline-block bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-blue-600 transform hover:scale-105 transition-transform">
+                    Get Started Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-in-section">
+                <h2 class="text-3xl font-bold text-white">A Smarter Way to Build Your Career</h2>
+                <p class="mt-4 text-lg text-slate-400">Everything you need to go from student to professional.</p>
+            </div>
+            <div class="mt-16 grid gap-10 md:grid-cols-3">
+                <!-- Feature Card 1 -->
+                <div class="feature-card bg-slate-900/50 p-8 rounded-xl fade-in-section">
+                    <div class="text-4xl text-blue-400 mb-4">📄</div>
+                    <h3 class="text-xl font-bold text-white">AI Resume Analysis</h3>
+                    <p class="mt-2 text-slate-400">Our system intelligently extracts and understands the skills listed on your resume.</p>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="feature-card bg-slate-900/50 p-8 rounded-xl fade-in-section" style="transition-delay: 100ms;">
+                    <div class="text-4xl text-blue-400 mb-4">🔬</div>
+                    <h3 class="text-xl font-bold text-white">Skill Gap Analysis</h3>
+                    <p class="mt-2 text-slate-400">Instantly see which required skills you're missing for your dream job.</p>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="feature-card bg-slate-900/50 p-8 rounded-xl fade-in-section" style="transition-delay: 200ms;">
+                    <div class="text-4xl text-blue-400 mb-4">📚</div>
+                    <h3 class="text-xl font-bold text-white">Personalized Learning</h3>
+                    <p class="mt-2 text-slate-400">Get recommendations for top online courses to fill your skill gaps and get hired.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-in-section">
+                <h2 class="text-3xl font-bold text-white">Get Started in Three Simple Steps</h2>
+            </div>
+            <div class="mt-16 relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-700 -translate-y-1/2"></div>
+                <div class="relative grid md:grid-cols-3 gap-12">
+                    <!-- Step 1 -->
+                    <div class="text-center fade-in-section">
+                        <div class="relative">
+                            <div class="mx-auto w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-blue-400 text-2xl font-bold border-4 border-slate-700">1</div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Create an Account</h3>
+                        <p class="mt-2 text-slate-400">Sign up for free and create your personal profile in seconds.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="text-center fade-in-section" style="transition-delay: 200ms;">
+                        <div class="relative">
+                            <div class="mx-auto w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-blue-400 text-2xl font-bold border-4 border-slate-700">2</div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Upload & Analyze</h3>
+                        <p class="mt-2 text-slate-400">Upload your resume and tell us your dream job. Our AI does the rest.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="text-center fade-in-section" style="transition-delay: 400ms;">
+                        <div class="relative">
+                            <div class="mx-auto w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-blue-400 text-2xl font-bold border-4 border-slate-700">3</div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Learn and Grow</h3>
+                        <p class="mt-2 text-slate-400">Follow your personalized learning path to gain the skills you need.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="fade-in-section">
+                    <h2 class="text-3xl font-bold text-white sm:text-4xl">About SkillSync</h2>
+                    <p class="mt-4 text-lg text-slate-400">In today's competitive job market, it's not enough to just have a degree. Employers are looking for specific, demonstrable skills. Our mission is to bridge the gap between education and employment by providing students and freshers with a clear, AI-powered roadmap to their desired career.</p>
+                    <p class="mt-4 text-lg text-slate-400">We believe that with the right guidance, anyone can achieve their professional goals. SkillSync is more than just a tool; it's your personal career co-pilot, helping you navigate the complexities of the job market with confidence.</p>
+                </div>
+                <div class="mt-10 lg:mt-0 fade-in-section" style="transition-delay: 200ms;">
+                    <img class="rounded-lg shadow-xl" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Tech lab environment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @section Scripts {
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const sections = document.querySelectorAll('.fade-in-section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            });
+        </script>
+    }
+</body>
+</html>
