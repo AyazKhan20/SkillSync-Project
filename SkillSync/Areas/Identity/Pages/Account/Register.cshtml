@@ -1,176 +1,74 @@
-﻿@* @page
+﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Sign Up";
+    // This now uses the main site layout
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
+<!-- Page-specific styles -->
+<style>
+    .input-field {
+        border: 1px solid #475569; /* slate-600 */
+        background: #1e293b; /* slate-800 */
+        transition: all 0.3s ease;
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+        .input-field:focus {
+            background: #334155; /* slate-700 */
+            border-color: #60a5fa; /* blue-400 */
+            outline: none;
+        }
+
+        .input-field::placeholder {
+            color: #94a3b8; /* slate-400 */
+        }
+
+    .text-danger {
+        color: #f87171; /* red-400 */
+        font-size: 0.875rem;
+    }
+</style>
+
+<div class="min-h-[calc(100vh-150px)] flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <div class="bg-slate-800/80 backdrop-blur-lg border border-slate-700 rounded-2xl shadow-2xl p-8 text-white">
+
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-bold mt-4 text-slate-200">Create Your Account</h1>
+                <p class="text-slate-400">Join us to start your career journey.</p>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="space-y-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div>
+                    <input asp-for="Input.Email" class="input-field w-full px-4 py-3 rounded-lg text-white" autocomplete="username" aria-required="true" placeholder="Email" />
+                    <span asp-validation-for="Input.Email" class="text-danger block mt-1"></span>
+                </div>
+
+                <div>
+                    <input asp-for="Input.Password" class="input-field w-full px-4 py-3 rounded-lg text-white" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                    <span asp-validation-for="Input.Password" class="text-danger block mt-1"></span>
+                </div>
+
+                <div>
+                    <input asp-for="Input.ConfirmPassword" class="input-field w-full px-4 py-3 rounded-lg text-white" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger block mt-1"></span>
+                </div>
+
+                <button id="registerSubmit" type="submit" class="w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition">Create Account</button>
+
+                <p class="text-center text-sm text-slate-400 pt-2">
+                    Already have an account?
+                    <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="font-semibold text-blue-400 hover:underline focus:outline-none">Sign In</a>
+                </p>
+            </form>
+
+        </div>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-} *@
-
-
-@page
-@model RegisterModel
-@{
-    ViewData["Title"] = "Sign Up";
-    Layout = null; // We are using a full-page custom layout
 }
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - SkillSync</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
-        }
-        .background-image {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1;
-            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            filter: blur(8px);
-            transform: scale(1.1);
-        }
-        .form-container {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .input-field {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-        .input-field:focus {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(59, 130, 246, 0.7);
-            outline: none;
-        }
-        /* Styling for the placeholder text */
-        .input-field::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .text-danger {
-            color: #f87171; /* red-400 */
-            font-size: 0.875rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="background-image"></div>
-    <div class="min-h-screen flex items-center justify-center p-4">
-        <div class="w-full max-w-md">
-            <div class="form-container rounded-2xl shadow-2xl p-8 text-white">
-                
-                <div class="text-center mb-8">
-                    <h1 class="text-3xl font-bold">Create Your Account</h1>
-                    <p class="text-white/80">Join us to start your career journey.</p>
-                </div>
-
-                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="space-y-6">
-                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                    
-                    <div>
-                        <input asp-for="Input.Email" class="input-field w-full px-4 py-3 rounded-lg text-white" autocomplete="username" aria-required="true" placeholder="Email" />
-                        <span asp-validation-for="Input.Email" class="text-danger block mt-1"></span>
-                    </div>
-                    
-                    <div>
-                        <input asp-for="Input.Password" class="input-field w-full px-4 py-3 rounded-lg text-white" autocomplete="new-password" aria-required="true" placeholder="Password" />
-                        <span asp-validation-for="Input.Password" class="text-danger block mt-1"></span>
-                    </div>
-
-                    <div>
-                        <input asp-for="Input.ConfirmPassword" class="input-field w-full px-4 py-3 rounded-lg text-white" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger block mt-1"></span>
-                    </div>
-                    
-                    <button id="registerSubmit" type="submit" class="w-full bg-white/90 text-slate-800 font-bold py-3 rounded-lg hover:bg-white transition">Create Account</button>
-                    
-                    <p class="text-center text-sm text-white/70 pt-2">
-                        Already have an account? 
-                        <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="font-semibold text-white hover:underline focus:outline-none">Sign In</a>
-                    </p>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
-</body>
-</html>
-
